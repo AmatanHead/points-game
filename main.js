@@ -145,8 +145,8 @@ let windowCount = 0;
 
 function createWindow() {
     const window = new BrowserWindow({
-        width: 812,
-        height: 725,
+        width: 432,
+        height: 405,
         useContentSize: true,
         webPreferences: {
             // devTools: false
