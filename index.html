@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Points game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="header" id="header">
+        <div class="info">
+            <div>Contract <span id="contract_id_v">???</span></div>
+            <div><span class="red_s you"></span> <span id="red_id_v">???</span></div>
+            <div><span class="blue_s"></span> <span id="blue_id_v">???</span></div>
+        </div>
+        <div class="score">
+            <div class="main_score"><span class="red" id="red_score">0</span> : <span class="blue" id="blue_score">0</span></div>
+            <div class="add_score" id="move_caption">Your turn</div>
+        </div>
+        <div class="controls">
+            <div class="controls__l" id="draw_button">Offer a draw</div>
+            <div class="controls__r" id="resign_button">Resign</div>
+        </div>
+    </div>
+    <div class="menu" id="menu">
+        <div class="menu__loading" id="menu_loading">
+            <div class="sk-rotating-plane"></div>
+        </div>
+        <h1>Points game</h1>
+        <hr>
+        <div>
+            <div class="input_spinner hide" id="node_url_spinner">
+                <div class="sk-double-bounce">
+                    <div class="sk-child sk-double-bounce0"></div>
+                    <div class="sk-child sk-double-bounce1 sk-child-anim"></div>
+                    <div class="sk-child sk-double-bounce2 sk-child-anim"></div>
+                </div>
+            </div>
+            <input placeholder="Node url" value="http://localhost:8545" id="node_url">
+        </div>
+        <div>
+            <div class="input_spinner hide" id="my_id_spinner">
+                <div class="sk-double-bounce">
+                    <div class="sk-child sk-double-bounce0"></div>
+                    <div class="sk-child sk-double-bounce1 sk-child-anim"></div>
+                    <div class="sk-child sk-double-bounce2 sk-child-anim"></div>
+                </div>
+            </div>
+            <input placeholder="My wallet id" id="my_id">
+        </div>
+        <hr>
+        <div><input placeholder="Opponent wallet id" id="opponent_id"></div>
+        <div><button id="new_game_button">Create new game</button></div>
+        <hr>
+        <div><input placeholder="Contract address" id="contract_id"></div>
+        <div><button id="join_game_button">Join existing game</button></div>
+    </div>
+    <div class="field" id="field">
+        <svg>
+            <g transform="translate(1,1)">
+                <g class="field__grid_h"></g>
+                <g class="field__grid_v"></g>
+                <g class="field__blue_territory"></g>
+                <g class="field__red_territory"></g>
+                <g class="field__blue_points"></g>
+                <g class="field__red_points"></g>
+                <g class="field__cursor">
+                    <circle r="3px"></circle>
+                </g>
+                <rect id="field__event_interceptor" style="pointer-events: all; opacity: 0; width: 1000px; height: 1000px"></rect>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        const d3 = require('d3');
+        const WindowController = require('./index');
+
+        const field = d3.select('#field');
+        const svg = field.select('svg');
+        const header = d3.select('#header');
+        const menu = d3.select('#menu');
+
+        const windowController = new WindowController(field, svg, header, menu);
+
+        setTimeout(windowController.openMenu, 50);
+        setTimeout(windowController.onNodeUrlChange, 55);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "points-game",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "recompile": "solcjs --bin --abi --optimize -o contracts/bin contracts/dots.sol && mv contracts/bin/contracts_dots_sol_Dots.abi contracts/bin/contracts_dots_sol_Dots.abi.json && echo '\"0x' | cat - contracts/bin/contracts_dots_sol_Dots.bin | tr -d '\n' > contracts/bin/contracts_dots_sol_Dots.bin.json && echo '\"' >> contracts/bin/contracts_dots_sol_Dots.bin.json && rm contracts/bin/contracts_dots_sol_Dots.bin"
+  },
+  "author": "Goncharov Vladimir",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.8.2",
+    "web3": "~0.20.1",
+    "d3": "~4.13.0"
+  }
+}
